@@ -1,16 +1,26 @@
-## Hi there 👋
+# PrimeTemplates ✨
 
-<!--
-**PrimeTemplates/PrimeTemplates** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Premium & affordable digital templates for everyday needs.
 
-Here are some ideas to get you started:
+## What we offer
+- 📄 Resume & CV templates (ATS-friendly)
+- 📑 Cover letters & job documents
+- 📊 Presentation (PPT) templates
+- 🗂️ Business & office documents
+- 📒 Planners, forms & digital assets
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+## Why PrimeTemplates?
+- Clean & professional designs
+- Easy to edit
+- Suitable for students, freshers & professionals
+- Low-cost, high-quality templates
+
+## Website
+🚧 Coming soon
+
+## Contact
+📧 Email: primetemplates@gmail.com  
+💼 GitHub: https://github.com/PrimeTemplates
+
+---
+© PrimeTemplates. All templates are original and copyrighted.
