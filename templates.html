@@ -97,6 +97,43 @@
             color: #7f8c8d;
             text-decoration: none;
         }
+        .floating-buy-btn {
+        position: fixed;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #2ecc71; /* Success Green */
+        color: white;
+        padding: 16px 40px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 800;
+        font-size: 1.1rem;
+        box-shadow: 0 10px 20px rgba(46, 204, 113, 0.4);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: 0.3s;
+        border: 2px solid white;
+        white-space: nowrap;
+    }
+
+    .floating-buy-btn:hover {
+        background-color: #27ae60;
+        transform: translateX(-50%) translateY(-5px);
+        box-shadow: 0 15px 25px rgba(46, 204, 113, 0.5);
+    }
+
+    /* Pulse effect to grab attention */
+    @keyframes pulse-green {
+        0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+        70% { box-shadow: 0 0 0 15px rgba(46, 204, 113, 0); }
+        100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+    }
+    .floating-buy-btn {
+        animation: pulse-green 2s infinite;
+    }
     </style>
 </head>
 <body>
@@ -122,6 +159,9 @@
 </div>
             </div>
         </div>
+        <a href="https://forms.gle/gTnLH2oK7oCiuCm59" class="floating-buy-btn" target="_blank">
+    🚀 BUY NOW - ₹59 ONLY
+</a>
 
         <a href="index.html" class="back-link">← Back to Home</a>
     </div>
