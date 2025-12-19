@@ -328,6 +328,36 @@
     margin-top: 5px;
     font-weight: 800;
 }
+        .stats-bar {
+    display: flex;                  /* Makes items sit side-by-side */
+    justify-content: space-around;  /* Puts equal space between items */
+    align-items: center;            /* Centers them vertically */
+    background: #ffffff;            /* Clean white background */
+    padding: 30px 10px;             /* Space inside the bar */
+    border-radius: 20px;            /* Rounded corners */
+    margin: 40px auto;              /* Space outside the bar */
+    max-width: 900px;               /* Keeps it from getting too wide */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Soft, pro shadow */
+    flex-wrap: wrap;                /* Makes it look good on mobile */
+}
+
+.stat-item {
+    text-align: center;             /* Centers the text inside each box */
+    min-width: 120px;               /* Keeps them from getting squished */
+    margin: 10px;
+}
+
+.stat-item h3 {
+    font-size: 1.8rem;              /* Makes the numbers big & bold */
+    color: #3b82f6;                 /* Prime Blue color */
+    margin-bottom: 5px;
+}
+
+.stat-item p {
+    color: #64748b;                 /* Professional slate grey */
+    font-size: 0.9rem;
+    font-weight: 600;
+}
     </style>
 </head>
 <body>
@@ -412,8 +442,23 @@
     </div>
     <a href="score.html" style="background: #3498db; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9rem;">Check Resume Health (10 Seconds) →</a>
 </div>
-   
-</div>
+    <div>
+        <div class="stats-bar">
+            <div class="stat-item">
+                <h3>500+</h3>
+                <p>Resume Sold</p>
+            </div>
+            <div class="stat-item">
+                <h3>4.5/5</h3>
+                <p>User Rating ⭐</p>
+            </div>
+            <div class="stat-item">
+                <h3>98%</h3>
+                <p>ATS-Friendly</p>
+            </div>
+        </div>
+    </div>
+
 
     <footer>
         &copy; 2025 PrimeTemplates. Built for Freshers, by a Founder.
