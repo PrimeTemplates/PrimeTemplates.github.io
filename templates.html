@@ -166,12 +166,39 @@
 </div>
             </div>
         </div>
+            <div style="margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 10px; border: 1px dashed #3498db;">
+    <p style="font-size: 0.8rem; font-weight: bold; margin-bottom: 10px;">HAVE A BETA CODE?</p>
+    <input type="text" id="couponInput" placeholder="Enter 8-digit code" style="padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
+    <button onclick="verifyCode()" style="padding: 8px 15px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">Apply</button>
+    <p id="message" style="margin-top: 10px; font-size: 0.9rem; font-weight: bold;"></p>
+</div>
         <a href="https://forms.gle/gTnLH2oK7oCiuCm59" class="floating-buy-btn" target="_blank">
     🚀 BUY NOW - ₹59 ONLY
 </a>
 
         <a href="index.html" class="back-link">← Back to Home</a>
     </div>
+        <script>
+function verifyCode() {
+    const code = document.getElementById('couponInput').value;
+    const message = document.getElementById('message');
+    
+    // THE SECRET RULE: 
+    // Let's say every valid code MUST start with "PRM" and have 8 characters.
+    // Example: PRM12345
+    
+    if (code.length === 8 && code.startsWith("PRM")) {
+        message.style.color = "#27ae60";
+        message.innerHTML = "✅ SUCCESS! Price dropped to ₹29. Pay via UPI now.";
+        
+        // CEO MOVE: This actually changes the price text on the page!
+        document.querySelector('.stat-number').innerHTML = "₹29"; 
+    } else {
+        message.style.color = "#e74c3c";
+        message.innerHTML = "❌ Invalid Beta Code. Try again.";
+    }
+}
+</script>
 
 </body>
 </html>
