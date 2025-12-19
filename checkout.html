@@ -12,6 +12,8 @@
         .total { font-weight: bold; font-size: 1.3rem; color: #3498db; border-top: 2px solid #ddd; padding-top: 15px; }
         .upi-box { background: #fff9eb; border: 2px dashed #f1c40f; padding: 15px; border-radius: 12px; text-align: center; margin-bottom: 20px; }
         .confirm-btn { width: 100%; background: linear-gradient(45deg, #f09433, #bc1888); color: white; padding: 16px; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; font-size: 1rem; }
+        input { width: 70%; padding: 10px; border: 1px solid #ddd; border-radius: 8px; margin-right: 5px; }
+        .apply-btn { padding: 10px; background: #2c3e50; color: white; border: none; border-radius: 8px; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -20,44 +22,70 @@
     <h2 style="text-align:center; margin-bottom:20px;">Secure Checkout</h2>
     
     <div class="order-box">
-        <p style="font-size: 0.8rem; color: #7f8c8d; margin-bottom: 5px;">ITEM SELECTED:</p>
+        <p style="font-size: 0.7rem; color: #7f8c8d; margin-bottom: 5px;">SELECTED ITEM:</p>
         <h3 id="displayItem" style="margin-bottom: 15px; color: #2c3e50;">Loading...</h3>
         
-        <div class="row"><span>Standard Price</span> <span id="oldPrice">₹59</span></div>
-        <div id="discountRow" class="row" style="display:none; color: #27ae60;"><span>Beta Discount</span> <span>-₹30</span></div>
-        <div class="row total"><span>Total Amount</span> <span id="finalPrice">₹59</span></div>
+        <div class="row"><span>Original Price</span> <span id="basePrice">₹0</span></div>
+        <div id="discountRow" class="row" style="display:none; color: #27ae60;"><span>Beta Discount</span> <span id="discountAmt">-₹0</span></div>
+        <div class="row total"><span>Final Total</span> <span id="finalPrice">₹0</span></div>
+    </div>
+
+    <div style="margin-bottom: 20px; text-align: center;">
+        <input type="text" id="checkoutCoupon" placeholder="Have a Beta Code?">
+        <button class="apply-btn" onclick="applyCheckoutCode()">Apply</button>
+        <p id="couponMsg" style="font-size: 0.8rem; margin-top: 5px;"></p>
     </div>
 
     <div class="upi-box">
-        <p style="font-size: 0.8rem; margin-bottom: 5px;">STEP 1: PAY VIA UPI ID</p>
+        <p style="font-size: 0.8rem; margin-bottom: 5px;">STEP 1: PAY VIA UPI</p>
         <strong style="font-size: 1.1rem; color: #d35400;">yourname@upi</strong>
-        <p style="font-size: 0.7rem; margin-top: 5px;">Pay exactly <span id="payPrompt">₹59</span></p>
+        <p style="font-size: 0.7rem; margin-top: 5px;">Transfer exactly <b id="payPrompt">₹0</b></p>
     </div>
 
-    <p style="font-size: 0.85rem; text-align: center; margin-bottom: 20px;">
-        STEP 2: Send the <b>Payment Screenshot</b> and <b>Beta Code Screenshot</b> to our Instagram.
+    <p style="font-size: 0.8rem; text-align: center; color: #7f8c8d; margin-bottom: 15px;">
+        📸 Screenshot the payment & the success message, then click below:
     </p>
 
-    <button class="confirm-btn" onclick="confirmOrder()">Confirm via Instagram DM →</button>
+    <button class="confirm-btn" onclick="confirmOrder()">Confirm on Instagram →</button>
 </div>
 
 <script>
-    // READ THE DATA FROM THE URL
     const params = new URLSearchParams(window.location.search);
     const itemName = params.get('item') || "Premium Template";
-    const hasDiscount = params.get('discount') === 'true';
+    let price = parseInt(params.get('price')) || 59;
+    const hasPreDiscount = params.get('discount') === 'true';
 
-    // DISPLAY THE DATA
     document.getElementById('displayItem').innerText = itemName.replace(/-/g, ' ');
+    document.getElementById('basePrice').innerText = "₹" + price;
+    updatePricing(price);
 
-    if(hasDiscount) {
+    if(hasPreDiscount) { applyDiscount(); }
+
+    function updatePricing(amt) {
+        document.getElementById('finalPrice').innerText = "₹" + amt;
+        document.getElementById('payPrompt').innerText = "₹" + amt;
+    }
+
+    function applyDiscount() {
+        let discount = (price > 100) ? 100 : 30; // ₹100 off for bundle, ₹30 for single
         document.getElementById('discountRow').style.display = 'flex';
-        document.getElementById('finalPrice').innerText = "₹29";
-        document.getElementById('payPrompt').innerText = "₹29";
+        document.getElementById('discountAmt').innerText = "-₹" + discount;
+        updatePricing(price - discount);
+    }
+
+    function applyCheckoutCode() {
+        const code = document.getElementById('checkoutCoupon').value.toUpperCase();
+        if(code.startsWith("PRM") && code.length === 8) {
+            applyDiscount();
+            document.getElementById('couponMsg').innerText = "✅ Code Applied!";
+            document.getElementById('couponMsg').style.color = "#27ae60";
+        } else {
+            document.getElementById('couponMsg').innerText = "❌ Invalid Code";
+            document.getElementById('couponMsg').style.color = "#e74c3c";
+        }
     }
 
     function confirmOrder() {
-        alert("Redirecting! Attach your screenshots in the Instagram chat.");
         window.location.href = "https://ig.me/m/primetemplate1";
     }
 </script>
