@@ -3,106 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Our Templates | Resume Store</title>
+    <title>Our Templates | PrimeTemplates</title>
     <style>
-        /* Professional Color Palette & Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #f4f7f9; color: #333; line-height: 1.6; padding: 40px 20px 120px 20px; }
+        .container { max-width: 1100px; margin: 0 auto; text-align: center; }
+        h1 { color: #2c3e50; margin-bottom: 10px; }
+        .subtitle { color: #7f8c8d; margin-bottom: 40px; }
 
-        body {
-            background-color: #f4f7f9;
-            color: #333;
-            line-height: 1.6;
-            padding: 40px 20px 100px 20px; /* Extra bottom padding for floating btn */
+        .template-grid { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-bottom: 40px; }
+        
+        .card { 
+            background: white; border-radius: 12px; overflow: hidden; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); width: 320px; 
+            text-align: left; transition: 0.3s; display: flex; flex-direction: column;
         }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            text-align: center;
+        .card:hover { transform: translateY(-10px); }
+        .card img { width: 100%; height: auto; display: block; cursor: zoom-in; border-bottom: 1px solid #eee; }
+        
+        .card-content { padding: 20px; flex-grow: 1; }
+        .card-title { font-size: 1.1rem; font-weight: bold; color: #2c3e50; margin-bottom: 8px; }
+        
+        .card-buy-btn {
+            display: block; background: #3498db; color: white; text-align: center;
+            padding: 12px; text-decoration: none; font-weight: bold;
+            margin: 0 20px 20px 20px; border-radius: 8px; transition: 0.3s;
         }
+        .card-buy-btn:hover { background: #2980b9; }
 
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
+        .beta-box {
+            max-width: 500px; margin: 0 auto 40px; padding: 25px; 
+            background: white; border-radius: 15px; border: 2px dashed #3498db;
         }
+        input { padding: 12px; border: 1px solid #ddd; border-radius: 8px; width: 60%; outline: none; }
+        .apply-btn { padding: 12px 20px; background: #3498db; color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
-        p.subtitle {
-            color: #7f8c8d;
-            margin-bottom: 40px;
-        }
-
-        /* Template Grid */
-        .template-grid {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
-            width: 320px;
-            text-align: left;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-        }
-
-        .card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
-            border-bottom: 1px solid #eee;
-        }
-
-        .card-content {
-            padding: 20px;
-        }
-
-        .card-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 10px;
-        }
-
-        /* Floating Buy Button */
         .floating-buy-btn {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #2ecc71;
-            color: white;
-            padding: 16px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 800;
-            font-size: 1.1rem;
-            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.4);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: 0.3s;
-            border: 2px solid white;
-        }
-
-        .floating-buy-btn:hover {
-            background-color: #27ae60;
-            transform: translateX(-50%) translateY(-5px);
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            background-color: #2ecc71; color: white; padding: 18px 45px;
+            border-radius: 50px; text-decoration: none; font-weight: 800;
+            z-index: 2000; display: flex; align-items: center; gap: 10px;
+            border: 2px solid white; box-shadow: 0 10px 25px rgba(46,204,113,0.4);
+            animation: pulse-green 2s infinite;
         }
 
         @keyframes pulse-green {
@@ -110,110 +52,93 @@
             70% { box-shadow: 0 0 0 15px rgba(46, 204, 113, 0); }
             100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
         }
-        .floating-buy-btn { animation: pulse-green 2s infinite; }
 
-        .back-link {
-            display: block;
-            margin-top: 40px;
-            color: #7f8c8d;
-            text-decoration: none;
+        .modal-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9); z-index: 3000; justify-content: center; align-items: center; cursor: zoom-out;
         }
-        /* Full Screen Preview Modal */
-.modal-overlay {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.9);
-    z-index: 3000;
-    justify-content: center;
-    align-items: center;
-    cursor: zoom-out;
-}
-
-.modal-overlay img {
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 10px;
-    box-shadow: 0 0 30px rgba(255,255,255,0.2);
-}
-
-.card img {
-    cursor: zoom-in; /* Shows the user they can click to enlarge */
-}
+        .modal-overlay img { max-width: 90%; max-height: 90%; border-radius: 10px; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Resume Templates</h1>
-        <p class="subtitle">Choose a design that helps you land your dream job.</p>
+<div class="container">
+    <h1>Our Resume Templates</h1>
+    <p class="subtitle">Click an image to zoom. Select a template to proceed.</p>
 
-        <div class="template-grid">
-            <div class="card">
-                <img src="template1-preview.png" alt="Modern Resume">
-                <div class="card-content">
-                    <div class="card-title">The Modern Professional (No.1) 🔥</div>
-                    <p style="color: #666; font-size: 0.85rem;">Clean, minimalist, and ATS-friendly. Delivered via Email in PPT format.</p>
-                </div>
+    <div class="template-grid">
+        <div class="card">
+            <img src="template1-preview.png" onclick="openPreview(this.src)">
+            <div class="card-content">
+                <div class="card-title">Modern Professional (No.1)</div>
+                <p style="color: #666; font-size: 0.85rem;">Clean, ATS-friendly design.</p>
             </div>
-
-            <div class="card">
-                <img src="template2-preview.png" alt="Minimalist Template">
-                <div class="card-content">
-                    <div class="card-title">Minimalist Template (No.2)</div>
-                    <p style="color: #666; font-size: 0.85rem;">A bold design for designers and marketers.</p>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="template3.png" alt="Modernist Template">
-                <div class="card-content">
-                    <div class="card-title">Modernist Template (No.3)</div>
-                    <p style="color: #666; font-size: 0.85rem;">Clean, high-impact design for 2025 applications.</p>
-                </div>
-            </div>
+            <a href="checkout.html?item=Modern-Professional" class="card-buy-btn">Buy Now - ₹<span class="price-val">59</span></a>
         </div>
 
-        <div style="max-width: 500px; margin: 0 auto 40px; padding: 20px; background: white; border-radius: 12px; border: 1px dashed #3498db;">
-            <p style="font-size: 0.8rem; font-weight: bold; margin-bottom: 10px;">HAVE A BETA CODE?</p>
-            <input type="text" id="couponInput" placeholder="Enter 8-digit code" style="padding: 10px; border: 1px solid #ddd; border-radius: 5px; width: 60%;">
-            <button onclick="verifyCode()" style="padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Apply</button>
-            <p id="message" style="margin-top: 15px; font-size: 0.85rem; font-weight: bold;"></p>
+        <div class="card">
+            <img src="template2-preview.png" onclick="openPreview(this.src)">
+            <div class="card-content">
+                <div class="card-title">Minimalist Design (No.2)</div>
+                <p style="color: #666; font-size: 0.85rem;">Bold for creative roles.</p>
+            </div>
+            <a href="checkout.html?item=Minimalist-Design" class="card-buy-btn">Buy Now - ₹<span class="price-val">59</span></a>
         </div>
 
-        <a href="index.html" class="back-link">← Back to Home</a>
+        <div class="card">
+            <img src="template3.png" onclick="openPreview(this.src)">
+            <div class="card-content">
+                <div class="card-title">Modernist 2025 (No.3)</div>
+                <p style="color: #666; font-size: 0.85rem;">The ultimate 2025 choice.</p>
+            </div>
+            <a href="checkout.html?item=Modernist-2025" class="card-buy-btn">Buy Now - ₹<span class="price-val">59</span></a>
+        </div>
     </div>
 
-    <a href="checkout.html?item=FullPack" id="mainBuyBtn" class="floating-buy-btn">
-        🚀 BUY NOW - ₹59 ONLY
-    </a>
+    <div class="beta-box">
+        <p style="font-size: 0.8rem; font-weight: bold; margin-bottom: 10px;">HAVE A BETA CODE?</p>
+        <input type="text" id="couponInput" placeholder="Enter PRM code">
+        <button class="apply-btn" onclick="verifyCode()">Apply</button>
+        <p id="message" style="margin-top: 15px; font-size: 0.85rem; font-weight: bold;"></p>
+    </div>
 
-    <script>
+    <a href="index.html" style="color: #7f8c8d; text-decoration: none;">← Back to Home</a>
+</div>
+
+<a href="checkout.html?item=Full-Bundle" id="floatingBtn" class="floating-buy-btn">
+    🚀 BUY FULL BUNDLE - ₹59
+</a>
+
+<div id="imageModal" class="modal-overlay" onclick="this.style.display='none'">
+    <img id="fullImage" src="">
+</div>
+
+<script>
+    function openPreview(src) {
+        document.getElementById('fullImage').src = src;
+        document.getElementById('imageModal').style.display = 'flex';
+    }
+
     function verifyCode() {
-        const code = document.getElementById('couponInput').value;
-        const message = document.getElementById('message');
-        const buyBtn = document.getElementById('mainBuyBtn');
+        const code = document.getElementById('couponInput').value.toUpperCase();
+        const msg = document.getElementById('message');
+        const prices = document.querySelectorAll('.price-val');
         
-        if (code.length === 8 && code.toUpperCase().startsWith("PRM")) {
-            message.style.color = "#27ae60";
-            message.innerHTML = `
-                ✅ CODE APPLIED! Price: ₹29<br>
-                <small style="color: #2c3e50;">📸 Take a screenshot of THIS message for your Instagram verification.</small>
-            `;
-            
-            // Update the floating button price too!
-            buyBtn.innerHTML = "🚀 BUY NOW - ₹29 ONLY";
-            buyBtn.style.backgroundColor = "#8e44ad"; // Purple to show it's "Premium/Special"
-            
+        if(code.startsWith("PRM") && code.length === 8) {
+            msg.innerHTML = "✅ Code Applied! Take a screenshot of this for Insta verification.<br>Price dropped to ₹29!";
+            msg.style.color = "#27ae60";
+            prices.forEach(p => p.innerText = "29");
+            document.getElementById('floatingBtn').innerText = "🚀 BUY FULL BUNDLE - ₹29";
+            // Update links to carry the discount info
+            const links = document.querySelectorAll('a');
+            links.forEach(link => {
+                if(link.href.includes('checkout.html')) link.href += "&discount=true";
+            });
         } else {
-            message.style.color = "#e74c3c";
-            message.innerHTML = "❌ Invalid Beta Code. Use your 8-digit PRM code.";
+            msg.innerText = "❌ Invalid Code.";
+            msg.style.color = "#e74c3c";
         }
     }
-    </script>
-<div id="imageModal" class="modal-overlay" onclick="this.style.display='none'">
-    <img id="fullImage" src="" alt="Full Preview">
-</div>
+</script>
 </body>
 </html>
