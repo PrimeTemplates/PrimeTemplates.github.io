@@ -17,11 +17,11 @@
             background-color: #f4f7f9;
             color: #333;
             line-height: 1.6;
-            padding: 40px 20px;
+            padding: 40px 20px 100px 20px; /* Extra bottom padding for floating btn */
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             text-align: center;
         }
@@ -36,12 +36,13 @@
             margin-bottom: 40px;
         }
 
-        /* Template Card Design */
+        /* Template Grid */
         .template-grid {
             display: flex;
             justify-content: center;
             gap: 30px;
             flex-wrap: wrap;
+            margin-bottom: 40px;
         }
 
         .card {
@@ -50,7 +51,8 @@
             overflow: hidden;
             box-shadow: 0 10px 20px rgba(0,0,0,0.05);
             transition: transform 0.3s ease;
-            width: 350px;
+            width: 320px;
+            text-align: left;
         }
 
         .card:hover {
@@ -59,7 +61,8 @@
 
         .card img {
             width: 100%;
-            height: auto;
+            height: 200px;
+            object-fit: cover;
             display: block;
             border-bottom: 1px solid #eee;
         }
@@ -69,27 +72,45 @@
         }
 
         .card-title {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
             color: #2c3e50;
             margin-bottom: 10px;
         }
 
-        /* Professional Blue Button */
-        .btn {
-            display: inline-block;
-            background-color: #3498db;
+        /* Floating Buy Button */
+        .floating-buy-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #2ecc71;
             color: white;
-            padding: 12px 25px;
+            padding: 16px 40px;
+            border-radius: 50px;
             text-decoration: none;
-            border-radius: 6px;
-            font-weight: 600;
-            transition: background 0.3s ease;
+            font-weight: 800;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 20px rgba(46, 204, 113, 0.4);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.3s;
+            border: 2px solid white;
         }
 
-        .btn:hover {
-            background-color: #2980b9;
+        .floating-buy-btn:hover {
+            background-color: #27ae60;
+            transform: translateX(-50%) translateY(-5px);
         }
+
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(46, 204, 113, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+        }
+        .floating-buy-btn { animation: pulse-green 2s infinite; }
 
         .back-link {
             display: block;
@@ -97,43 +118,6 @@
             color: #7f8c8d;
             text-decoration: none;
         }
-        .floating-buy-btn {
-        position: fixed;
-        bottom: 30px;
-        left: 50%;
-        transform: translateX(-50%);
-        background-color: #2ecc71; /* Success Green */
-        color: white;
-        padding: 16px 40px;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: 800;
-        font-size: 1.1rem;
-        box-shadow: 0 10px 20px rgba(46, 204, 113, 0.4);
-        z-index: 2000;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        transition: 0.3s;
-        border: 2px solid white;
-        white-space: nowrap;
-    }
-
-    .floating-buy-btn:hover {
-        background-color: #27ae60;
-        transform: translateX(-50%) translateY(-5px);
-        box-shadow: 0 15px 25px rgba(46, 204, 113, 0.5);
-    }
-
-    /* Pulse effect to grab attention */
-    @keyframes pulse-green {
-        0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
-        70% { box-shadow: 0 0 0 15px rgba(46, 204, 113, 0); }
-        100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
-    }
-    .floating-buy-btn {
-        animation: pulse-green 2s infinite;
-    }
     </style>
 </head>
 <body>
@@ -144,64 +128,67 @@
 
         <div class="template-grid">
             <div class="card">
-                <img src="template1-preview.png" alt="Modern Resume Template Preview">
+                <img src="template1-preview.png" alt="Modern Resume">
                 <div class="card-content">
-                    <div class="card-title">The Modern Professional (Serial no.1) Bestseller🔥</div>
-                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 15px;">
-                        Clean, minimalist, and ATS-friendly design. It will be sent in email after payment in form of PPT.
-                    </p>
+                    <div class="card-title">The Modern Professional (No.1) 🔥</div>
+                    <p style="color: #666; font-size: 0.85rem;">Clean, minimalist, and ATS-friendly. Delivered via Email in PPT format.</p>
                 </div>
-                <div class="card">
-    <img src="template2-preview.png" alt="Minimalist Template (Serial no.2)"> <div class="card-content">
-        <div class="card-title">Minimalist Template (Serial no.2)</div> <p style="color: #666; font-size: 0.9rem; margin-bottom: 15px;">
-            A bold design for designers and marketers. </p>
-    </div>
-                    
-    <div class="card">
-    <img src="template3.png" alt="Minimalist Template (Serial no.2)"> <div class="card-content">
-        <div class="card-title">Modernist Template (Serial no.3)</div> <p style="color: #666; font-size: 0.9rem; margin-bottom: 15px;">
-            Clean, high-impact design for 2025. </p>
-    </div>       
-        
-</div>
+            </div>
+
+            <div class="card">
+                <img src="template2-preview.png" alt="Minimalist Template">
+                <div class="card-content">
+                    <div class="card-title">Minimalist Template (No.2)</div>
+                    <p style="color: #666; font-size: 0.85rem;">A bold design for designers and marketers.</p>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="template3.png" alt="Modernist Template">
+                <div class="card-content">
+                    <div class="card-title">Modernist Template (No.3)</div>
+                    <p style="color: #666; font-size: 0.85rem;">Clean, high-impact design for 2025 applications.</p>
+                </div>
             </div>
         </div>
-            <div style="margin: 20px 0; padding: 15px; background: #f8f9fa; border-radius: 10px; border: 1px dashed #3498db;">
-    <p style="font-size: 0.8rem; font-weight: bold; margin-bottom: 10px;">HAVE A BETA CODE?</p>
-    <input type="text" id="couponInput" placeholder="Enter 8-digit code" style="padding: 8px; border: 1px solid #ddd; border-radius: 5px;">
-    <button onclick="verifyCode()" style="padding: 8px 15px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer;">Apply</button>
-    <p id="message" style="margin-top: 10px; font-size: 0.9rem; font-weight: bold;"></p>
-</div>
-        <a href="https://forms.gle/gTnLH2oK7oCiuCm59" class="floating-buy-btn" target="_blank">
-    🚀 BUY NOW - ₹59 ONLY
-</a>
+
+        <div style="max-width: 500px; margin: 0 auto 40px; padding: 20px; background: white; border-radius: 12px; border: 1px dashed #3498db;">
+            <p style="font-size: 0.8rem; font-weight: bold; margin-bottom: 10px;">HAVE A BETA CODE?</p>
+            <input type="text" id="couponInput" placeholder="Enter 8-digit code" style="padding: 10px; border: 1px solid #ddd; border-radius: 5px; width: 60%;">
+            <button onclick="verifyCode()" style="padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">Apply</button>
+            <p id="message" style="margin-top: 15px; font-size: 0.85rem; font-weight: bold;"></p>
+        </div>
 
         <a href="index.html" class="back-link">← Back to Home</a>
     </div>
-       <script>
-function verifyCode() {
-    const code = document.getElementById('couponInput').value;
-    const message = document.getElementById('message');
-    
-    // Pattern: PRM + 5 more characters (Total 8)
-    if (code.length === 8 && code.startsWith("PRM")) {
-        message.style.color = "#27ae60";
-        // THE UPDATED INSTRUCTION
-        message.innerHTML = `
-            ✅ CODE APPLIED! Price: <span style="font-size: 1.2rem;">₹29</span><br>
-            <small style="color: #2c3e50;">📸 Please take a screenshot of this "Success" message and attach it to your payment/order form to verify your Beta Discount.</small>
-        `;
+
+    <a href="checkout.html?item=FullPack" id="mainBuyBtn" class="floating-buy-btn">
+        🚀 BUY NOW - ₹59 ONLY
+    </a>
+
+    <script>
+    function verifyCode() {
+        const code = document.getElementById('couponInput').value;
+        const message = document.getElementById('message');
+        const buyBtn = document.getElementById('mainBuyBtn');
         
-        // This finds the price in your hero section and updates it
-        const priceElement = document.querySelector('.stat-number');
-        if(priceElement) priceElement.innerHTML = "₹29"; 
-        
-    } else {
-        message.style.color = "#e74c3c";
-        message.innerHTML = "❌ Invalid Beta Code. Make sure it's 8 characters and starts with PRM.";
+        if (code.length === 8 && code.toUpperCase().startsWith("PRM")) {
+            message.style.color = "#27ae60";
+            message.innerHTML = `
+                ✅ CODE APPLIED! Price: ₹29<br>
+                <small style="color: #2c3e50;">📸 Take a screenshot of THIS message for your Instagram verification.</small>
+            `;
+            
+            // Update the floating button price too!
+            buyBtn.innerHTML = "🚀 BUY NOW - ₹29 ONLY";
+            buyBtn.style.backgroundColor = "#8e44ad"; // Purple to show it's "Premium/Special"
+            
+        } else {
+            message.style.color = "#e74c3c";
+            message.innerHTML = "❌ Invalid Beta Code. Use your 8-digit PRM code.";
+        }
     }
-}
-</script>
+    </script>
 
 </body>
 </html>
