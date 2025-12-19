@@ -1,77 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Templates | PrimeTemplates</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Templates | Resume Store</title>
+    <style>
+        /* Professional Color Palette & Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6fb;
-      color: #222;
-      text-align: center;
-    }
+        body {
+            background-color: #f4f7f9;
+            color: #333;
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
 
-    header {
-      background: #000;
-      color: #fff;
-      padding: 20px;
-      font-size: 28px;
-      font-weight: bold;
-    }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
 
-    .container {
-      padding: 40px 20px;
-    }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
 
-    .template-box {
-      max-width: 800px;
-      margin: auto;
-      background: #fff;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
+        p.subtitle {
+            color: #7f8c8d;
+            margin-bottom: 40px;
+        }
 
-    .template-box img {
-      width: 100%;
-      border-radius: 8px;
-    }
+        /* Template Card Design */
+        .template-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
 
-    .template-title {
-      font-size: 22px;
-      margin: 15px 0 5px;
-      font-weight: bold;
-    }
+        .card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            width: 350px;
+        }
 
-    .template-desc {
-      color: #555;
-      font-size: 16px;
-    }
-  </style>
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        /* Professional Blue Button */
+        .btn {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 40px;
+            color: #7f8c8d;
+            text-decoration: none;
+        }
+    </style>
 </head>
-
 <body>
 
-  <header>
-    PrimeTemplates – Resume Templates
-  </header>
+    <div class="container">
+        <h1>Resume Templates</h1>
+        <p class="subtitle">Choose a design that helps you land your dream job.</p>
 
-  <div class="container">
-    <div class="template-box">
-      <img src="template1-preview.png" alt="Fresher Resume Template">
+        <div class="template-grid">
+            <div class="card">
+                <img src="template1-preview.png" alt="Modern Resume Template Preview">
+                <div class="card-content">
+                    <div class="card-title">The Modern Professional</div>
+                    <p style="color: #666; font-size: 0.9rem; margin-bottom: 15px;">
+                        Clean, minimalist, and ATS-friendly design.
+                    </p>
+                    <a href="#" class="btn">Get This Template</a>
+                </div>
+            </div>
+        </div>
 
-      <div class="template-title">
-        Fresher Resume Template
-      </div>
-
-      <div class="template-desc">
-        Clean, modern resume template designed for students & freshers.
-      </div>
+        <a href="index.html" class="back-link">← Back to Home</a>
     </div>
-  </div>
 
 </body>
 </html>
-
