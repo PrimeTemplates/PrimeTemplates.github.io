@@ -3,75 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATS Score Checker | PrimeTemplates</title>
+    <title>ATS Resume Scanner | PrimeTemplates</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
-        body { background: #f4f7f9; text-align: center; padding: 50px 20px; }
-        
-        .container { max-width: 600px; margin: 0 auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-        
-        h1 { color: #2c3e50; margin-bottom: 10px; }
-        p { color: #7f8c8d; margin-bottom: 30px; }
+        body { background: #f8fafc; color: #1e293b; line-height: 1.6; }
 
-        /* Upload Box */
-        .upload-box { border: 2px dashed #3498db; padding: 40px; border-radius: 15px; cursor: pointer; transition: 0.3s; position: relative; }
-        .upload-box:hover { background: #ebf5fb; }
-        
-        /* Loading Animation (Hidden by default) */
-        #loader { display: none; margin-top: 20px; }
-        .spinner { border: 4px solid #f3f3f3; border-top: 4px solid #3498db; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .nav { padding: 20px; text-align: center; background: white; border-bottom: 1px solid #e2e8f0; }
+        .nav a { text-decoration: none; color: #334155; font-weight: 600; font-size: 0.9rem; }
 
-        /* Results (Hidden by default) */
-        #result { display: none; margin-top: 30px; }
-        .score-circle { width: 100px; height: 100px; line-height: 100px; border-radius: 50%; background: #e74c3c; color: white; font-size: 1.5rem; font-weight: bold; margin: 0 auto 20px; }
-        .warning { color: #e74c3c; font-weight: bold; margin-bottom: 20px; }
+        .container { max-width: 600px; margin: 60px auto; background: white; padding: 40px; border-radius: 24px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); text-align: center; }
         
-        .btn { display: inline-block; background: #2ecc71; color: white; padding: 15px 30px; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 10px; }
+        h1 { font-size: 1.8rem; font-weight: 800; color: #0f172a; margin-bottom: 10px; }
+        p.subtitle { color: #64748b; margin-bottom: 30px; }
+
+        /* Hide the actual file input but keep it functional */
+        #fileInput { display: none; }
+
+        .upload-area { 
+            border: 2px dashed #cbd5e1; 
+            padding: 50px 20px; 
+            border-radius: 16px; 
+            cursor: pointer; 
+            transition: all 0.3s ease;
+            background: #f1f5f9;
+        }
+        .upload-area:hover { border-color: #3b82f6; background: #eff6ff; }
+        .upload-icon { font-size: 3rem; margin-bottom: 15px; display: block; }
+
+        /* Scanner Animation */
+        #loader { display: none; margin: 40px 0; }
+        .bar-container { width: 100%; background: #e2e8f0; height: 10px; border-radius: 5px; overflow: hidden; margin-top: 15px; }
+        .bar-fill { width: 0%; height: 100%; background: #3b82f6; animation: fillProgress 3s forwards; }
+        @keyframes fillProgress { 0% { width: 0%; } 100% { width: 100%; } }
+
+        /* Results */
+        #result { display: none; margin-top: 20px; animation: fadeIn 0.5s ease; }
+        .score-box { padding: 30px; border-radius: 16px; margin-bottom: 20px; }
+        .score-number { font-size: 3.5rem; font-weight: 800; margin-bottom: 10px; }
+        
+        /* Bad Score Style */
+        .score-bad { background: #fef2f2; color: #b91c1c; border: 1px solid #fee2e2; }
+        /* Good Score Style */
+        .score-good { background: #f0fdf4; color: #15803d; border: 1px solid #dcfce7; }
+
+        .issue-list { text-align: left; margin: 20px 0; font-size: 0.9rem; list-style: none; }
+        .issue-list li { margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+
+        .btn { 
+            display: inline-block; 
+            width: 100%; 
+            padding: 16px; 
+            border-radius: 12px; 
+            font-weight: 700; 
+            text-decoration: none; 
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+        .btn-buy { background: #2ecc71; color: white; box-shadow: 0 4px 14px 0 rgba(46,204,113,0.39); }
+        .btn-home { background: #3b82f6; color: white; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>ATS Resume Scanner</h1>
-        <p>Check if your resume survives the 6-second recruiter test.</p>
+    <nav class="nav">
+        <a href="index.html">← Back to PrimeTemplates</a>
+    </nav>
 
-        <div class="upload-box" id="dropzone" onclick="startScan()">
-            <span id="upload-text">📁 Drop your Resume here or Click to Upload</span>
-        </div>
+    <div class="container">
+        <h1>ATS Scanner 2025</h1>
+        <p class="subtitle">See if your resume survives the automated screening.</p>
+
+        <label for="fileInput" class="upload-area" id="dropzone">
+            <span class="upload-icon">📄</span>
+            <strong id="upload-text">Click to upload your Resume</strong>
+            <p style="font-size: 0.8rem; color: #94a3b8; margin-top: 8px;">PDF or DOCX supported</p>
+        </label>
+        <input type="file" id="fileInput" accept=".pdf,.docx">
 
         <div id="loader">
-            <div class="spinner"></div>
-            <p style="margin-top: 15px;">Analyzing keywords & formatting...</p>
+            <p>Scanning for keywords...</p>
+            <div class="bar-container"><div class="bar-fill"></div></div>
         </div>
 
         <div id="result">
-            <div class="score-circle">62/100</div>
-            <p class="warning">⚠️ CRITICAL ISSUES FOUND</p>
-            <ul style="text-align: left; color: #555; margin-bottom: 25px; font-size: 0.9rem;">
-                <li>• Format is not ATS-compatible</li>
-                <li>• Design is outdated for 2025</li>
-                <li>• Missing key structural elements</li>
-            </ul>
-            <p><b>Fix it instantly:</b></p>
-            <a href="templates.html" class="btn">Get 99/100 Score Template →</a>
-        </div>
+            </div>
     </div>
 
     <script>
-        function startScan() {
-            document.getElementById('upload-text').innerText = "File Uploaded!";
-            document.getElementById('dropzone').style.borderColor = "#2ecc71";
-            
-            // Show Loader
-            document.getElementById('loader').style.display = "block";
-            
-            // Wait 3 seconds, then show results
-            setTimeout(function() {
-                document.getElementById('loader').style.display = "none";
-                document.getElementById('result').style.display = "block";
-                document.getElementById('dropzone').style.display = "none";
+        const fileInput = document.getElementById('fileInput');
+        const dropzone = document.getElementById('dropzone');
+        const loader = document.getElementById('loader');
+        const resultDiv = document.getElementById('result');
+
+        fileInput.addEventListener('change', function(e) {
+            if (e.target.files.length > 0) {
+                const fileName = e.target.files[0].name;
+                startAnalysis(fileName);
+            }
+        });
+
+        function startAnalysis(fileName) {
+            dropzone.style.display = 'none';
+            loader.style.display = 'block';
+
+            // 3 second fake scan
+            setTimeout(() => {
+                loader.style.display = 'none';
+                resultDiv.style.display = 'block';
+
+                // THE CHAIRMAN'S SECRET LOGIC
+                // Checks if "Prime" is in the filename
+                if (fileName.toLowerCase().includes('prime')) {
+                    showGoodScore();
+                } else {
+                    showBadScore();
+                }
             }, 3000);
+        }
+
+        function showBadScore() {
+            resultDiv.innerHTML = `
+                <div class="score-box score-bad">
+                    <div class="score-number">62/100</div>
+                    <p><strong>REJECTED BY ATS</strong></p>
+                </div>
+                <ul class="issue-list">
+                    <li>❌ Layout is too complex for scanners</li>
+                    <li>❌ Non-standard fonts detected</li>
+                    <li>❌ Missing ATS-friendly skill headers</li>
+                </ul>
+                <p style="margin-bottom:15px; font-size:0.9rem;">Don't risk your career with a bad score.</p>
+                <a href="templates.html" class="btn btn-buy">Get 98/100 Template (₹59) →</a>
+            `;
+        }
+
+        function showGoodScore() {
+            resultDiv.innerHTML = `
+                <div class="score-box score-good">
+                    <div class="score-number">98/100</div>
+                    <p><strong>ATS OPTIMIZED</strong></p>
+                </div>
+                <ul class="issue-list">
+                    <li>✅ Perfect structural hierarchy</li>
+                    <li>✅ High keyword density</li>
+                    <li>✅ Industry-standard formatting</li>
+                </ul>
+                <p style="margin-bottom:15px; font-size:0.9rem;">You have a Prime resume. Go apply with confidence!</p>
+                <a href="index.html" class="btn btn-home">Back to Home</a>
+            `;
         }
     </script>
 </body>
