@@ -3,15 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PrimeTemplates | Premium Resume Gallery</title>
+    <title>Prime Resume Store | Premium ATS Gallery</title>
     <style>
-        :root { --primary: #3498db; --secondary: #2ecc71; --dark: #0f172a; --bg: #f8fbff; --premium: #6366f1; }
+        :root { 
+            --primary: #3498db; 
+            --secondary: #2ecc71; 
+            --dark: #0f172a; 
+            --bg: #f8fbff; 
+            --premium: #6366f1; 
+            --text-gray: #64748b;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', 'Segoe UI', sans-serif; }
-        body { background-color: var(--bg); color: #333; padding: 40px 20px 120px 20px; }
         
-        .header { text-align: center; margin-bottom: 50px; }
-        .header h1 { font-size: 2.5rem; color: var(--dark); letter-spacing: -1px; }
-        .header p { color: #7f8c8d; margin-top: 10px; }
+        body { background-color: var(--bg); color: #333; padding: 40px 20px 140px 20px; }
+
+        .header { text-align: center; margin-bottom: 60px; }
+        .header h1 { font-size: 2.8rem; color: var(--dark); letter-spacing: -1.5px; margin-bottom: 10px; }
+        .header p { color: var(--text-gray); font-size: 1.1rem; }
 
         .container { max-width: 1100px; margin: 0 auto; }
 
@@ -20,129 +29,171 @@
             display: grid; 
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
             gap: 30px; 
-            margin-bottom: 50px; 
+            margin-bottom: 60px; 
         }
         
         .card { 
-            background: white; border-radius: 16px; overflow: hidden; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.3s; 
+            background: white; border-radius: 20px; overflow: hidden; 
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03); transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
             display: flex; flex-direction: column; border: 1px solid #edf2f7;
             position: relative;
         }
-        .card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .card img { width: 100%; height: auto; display: block; cursor: zoom-in; border-bottom: 1px solid #eee; }
+
+        .card:hover { 
+            transform: translateY(-12px); 
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+        }
+
+        .card img { 
+            width: 100%; height: auto; display: block; cursor: zoom-in; 
+            border-bottom: 1px solid #f1f5f9; transition: 0.3s;
+        }
+
+        .card:hover img { filter: brightness(0.95); }
         
-        .card-content { padding: 20px; flex-grow: 1; }
-        .card-title { font-size: 1.1rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
-        .card-desc { color: #7f8c8d; font-size: 0.85rem; line-height: 1.4; }
+        .card-content { padding: 25px; flex-grow: 1; }
+        .card-title { font-size: 1.15rem; font-weight: 800; color: var(--dark); margin-bottom: 8px; }
+        .card-desc { color: var(--text-gray); font-size: 0.85rem; line-height: 1.5; margin-bottom: 15px; }
+
+        .price-row { display: flex; align-items: center; gap: 10px; margin-top: auto; }
+        .current-price { font-size: 1.3rem; font-weight: 900; color: var(--dark); }
+        .old-price { text-decoration: line-through; color: #94a3b8; font-size: 0.9rem; }
 
         /* Buttons */
         .card-buy-btn { 
-            display: block; background: var(--primary); color: white; text-align: center; 
-            padding: 14px; text-decoration: none; font-weight: 700; 
-            margin: 0 20px 20px 20px; border-radius: 10px; transition: 0.2s; 
+            display: block; background: var(--dark); color: white; text-align: center; 
+            padding: 16px; text-decoration: none; font-weight: 700; 
+            margin: 0 20px 20px 20px; border-radius: 12px; transition: 0.3s;
+            border: none; cursor: pointer;
         }
-        .card-buy-btn:hover { filter: brightness(1.1); }
+        .card-buy-btn:hover { background: var(--primary); transform: scale(1.02); }
 
-        /* Premium Styling for No. 4 */
-        .premium-card { border: 2.5px solid var(--premium) !important; background: #fafaff; }
+        /* Premium Styling (No. 4) */
+        .premium-card { border: 2px solid var(--premium) !important; background: #fefeff; }
         .premium-tag { 
             background: var(--premium); color: white; text-align: center; 
-            font-size: 0.7rem; font-weight: 900; padding: 6px; letter-spacing: 1px; 
+            font-size: 0.7rem; font-weight: 900; padding: 8px; letter-spacing: 1.5px; 
         }
-        .premium-price { color: var(--premium); font-weight: 800; font-size: 1.2rem; margin-top: 10px; display: block; }
-        .strike { text-decoration: line-through; color: #94a3b8; font-size: 0.85rem; margin-left: 5px; font-weight: 400; }
+        .premium-card .current-price { color: var(--premium); }
+        .premium-card .card-buy-btn { background: var(--premium); }
+        .premium-card .card-buy-btn:hover { filter: brightness(1.1); }
 
-        /* Beta Section */
-        .beta-section {
-            max-width: 500px; margin: 0 auto 40px; padding: 30px; 
-            background: white; border-radius: 20px; border: 2px dashed #cbd5e0; text-align: center;
+        /* INSTRUCTION BOX (Replaced Discount Section) */
+        .info-box {
+            max-width: 600px; margin: 40px auto; padding: 30px; 
+            background: #fff; border-radius: 24px; border: 1px solid #e2e8f0;
+            text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.02);
         }
-        .beta-section input { 
-            padding: 12px; border: 1px solid #e2e8f0; border-radius: 10px; 
-            width: 60%; margin-bottom: 10px; outline: none; 
-        }
-        .apply-btn { padding: 12px 20px; background: var(--dark); color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: 600; }
+        .info-box h3 { font-size: 1.2rem; margin-bottom: 20px; color: var(--dark); }
+        .steps { display: flex; justify-content: space-around; gap: 15px; text-align: center; }
+        .step { flex: 1; }
+        .step-icon { font-size: 1.5rem; display: block; margin-bottom: 10px; }
+        .step-txt { font-size: 0.8rem; font-weight: 600; color: var(--text-gray); }
 
         /* Floating Bundle Button */
         .floating-bundle-btn {
             position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
             background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
-            color: white; padding: 18px 40px; border-radius: 50px; 
+            color: white; padding: 20px 45px; border-radius: 100px; 
             text-decoration: none; font-weight: 800; z-index: 2000;
-            box-shadow: 0 10px 30px rgba(46, 204, 113, 0.4); 
+            box-shadow: 0 15px 35px rgba(46, 204, 113, 0.4); 
             border: 2px solid white; animation: pulse 2s infinite; text-align: center;
+            white-space: nowrap; font-size: 1rem;
         }
 
         @keyframes pulse { 0% { transform: translateX(-50%) scale(1); } 50% { transform: translateX(-50%) scale(1.05); } 100% { transform: translateX(-50%) scale(1); } }
 
-        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 3000; justify-content: center; align-items: center; cursor: zoom-out; }
-        .modal img { max-width: 90%; max-height: 90%; border-radius: 8px; }
+        .modal { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.9); z-index: 3000; justify-content: center; align-items: center; cursor: zoom-out; backdrop-filter: blur(5px); }
+        .modal img { max-width: 90%; max-height: 85vh; border-radius: 12px; box-shadow: 0 25px 50px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
 
 <div class="header">
-    <h1>Prime Resume Store</h1>
-    <p>Premium designs for the modern professional.</p>
+    <h1>Resume Gallery</h1>
+    <p>Select a blueprint for your professional success.</p>
 </div>
 
 <div class="container">
     <div class="template-grid">
         
         <div class="card">
-            <img src="template1-preview.png" onclick="openPreview(this.src)">
+            <img src="template1-preview.png" onclick="openPreview(this.src)" alt="Modern Professional">
             <div class="card-content">
                 <div class="card-title">Modern Professional (No.1)</div>
-                <p class="card-desc">ATS-friendly and high impact design.</p>
-                <span class="premium-price" style="color: #333;">₹59</span>
+                <p class="card-desc">The gold standard for engineering and tech freshers. Clean, bold, and 100% ATS-proof.</p>
+                <div class="price-row">
+                    <span class="current-price">₹59</span>
+                    <span class="old-price">₹199</span>
+                </div>
             </div>
-            <a href="checkout.html?item=Modern-Professional&price=59" class="card-buy-btn">Buy Template - ₹59</a>
+            <a href="checkout.html?item=Modern-Professional&price=59" class="card-buy-btn">Choose This Design</a>
         </div>
 
         <div class="card">
-            <img src="template2-preview.png" onclick="openPreview(this.src)">
+            <img src="template2-preview.png" onclick="openPreview(this.src)" alt="Minimalist White">
             <div class="card-content">
                 <div class="card-title">Minimalist White (No.2)</div>
-                <p class="card-desc">Perfect for corporate and formal roles.</p>
-                <span class="premium-price" style="color: #333;">₹59</span>
+                <p class="card-desc">Elegant and balanced. Best for corporate, finance, and administrative roles.</p>
+                <div class="price-row">
+                    <span class="current-price">₹59</span>
+                    <span class="old-price">₹199</span>
+                </div>
             </div>
-            <a href="checkout.html?item=Minimalist-White&price=59" class="card-buy-btn">Buy Template - ₹59</a>
+            <a href="checkout.html?item=Minimalist-White&price=59" class="card-buy-btn">Choose This Design</a>
         </div>
 
         <div class="card">
-            <img src="template3.png" onclick="openPreview(this.src)">
+            <img src="template3.png" onclick="openPreview(this.src)" alt="Modernist 2025">
             <div class="card-content">
                 <div class="card-title">Modernist 2025 (No.3)</div>
-                <p class="card-desc">Sleek layout optimized for managers.</p>
-                <span class="premium-price" style="color: #333;">₹59</span>
+                <p class="card-desc">Designed for high-growth startups and creative management applications.</p>
+                <div class="price-row">
+                    <span class="current-price">₹59</span>
+                    <span class="old-price">₹199</span>
+                </div>
             </div>
-            <a href="checkout.html?item=Modernist-2025&price=59" class="card-buy-btn">Buy Template - ₹59</a>
+            <a href="checkout.html?item=Modernist-2025&price=59" class="card-buy-btn">Choose This Design</a>
         </div>
 
         <div class="card premium-card">
-            <div class="premium-tag">DESIGNER'S SIGNATURE SERIES ✨</div>
-            <img src="template4.png" onclick="openPreview(this.src)">
+            <div class="premium-tag">DESIGNER'S SIGNATURE ✨</div>
+            <img src="template4.png" onclick="openPreview(this.src)" alt="Prime Signature">
             <div class="card-content">
-                <div class="card-title" style="color: #4338ca;">The "Prime Signature" (No.4)</div>
-                <p class="card-desc">Fully hand-crafted layout. Elite typography and spacing for high-end applications.</p>
-                <span class="premium-price">₹149 <span class="strike">₹299</span></span>
+                <div class="card-title">The "Prime Signature" (No.4)</div>
+                <p class="card-desc">Our flagship hand-crafted layout. High-end typography for elite executive applications.</p>
+                <div class="price-row">
+                    <span class="current-price">₹149</span>
+                    <span class="old-price">₹299</span>
+                </div>
             </div>
-            <a href="checkout.html?item=Prime-Signature-Elite&price=149" class="card-buy-btn" style="background: var(--premium);">Get Premium Edit - ₹149</a>
+            <a href="checkout.html?item=Prime-Signature-Elite&price=149" class="card-buy-btn">Get Premium Design</a>
         </div>
 
     </div>
 
-    <div class="beta-section">
-        <p style="font-weight: 800; margin-bottom: 15px; font-size: 0.9rem;">BETA ACCESS CODE</p>
-        <input type="text" id="betaInput" placeholder="Enter Discount Code">
-        <button class="apply-btn" onclick="applyBeta()">Verify</button>
-        <p id="betaMsg" style="margin-top: 15px; font-size: 0.85rem; font-weight: bold;"></p>
+    <div class="info-box">
+        <h3>How to download your template:</h3>
+        <div class="steps">
+            <div class="step">
+                <span class="step-icon">💳</span>
+                <span class="step-txt">1. Instant UPI Payment</span>
+            </div>
+            <div class="step">
+                <span class="step-icon">📩</span>
+                <span class="step-txt">2. Verify on WhatsApp</span>
+            </div>
+            <div class="step">
+                <span class="step-icon">🚀</span>
+                <span class="step-txt">3. Receive via Email</span>
+            </div>
+        </div>
     </div>
 </div>
 
 <a href="checkout.html?item=Full-Bundle-Pack&price=300" id="bundleBtn" class="floating-bundle-btn">
-    🚀 UNLOCK ALL TEMPLATES - ₹300
+    🔥 GET ALL 10+ TEMPLATES - ₹300
 </a>
 
 <div id="modal" class="modal" onclick="this.style.display='none'">
@@ -153,23 +204,6 @@
     function openPreview(src) { 
         document.getElementById('modalImg').src = src; 
         document.getElementById('modal').style.display = 'flex'; 
-    }
-
-    function applyBeta() {
-        const val = document.getElementById('betaInput').value.toUpperCase();
-        const msg = document.getElementById('betaMsg');
-        if(val.startsWith("PRM") && val.length === 8) {
-            msg.innerHTML = "✅ Code Accepted! Discount applied at checkout.";
-            msg.style.color = "#27ae60";
-            document.querySelectorAll('a').forEach(link => {
-                if(link.href.includes('checkout.html') && !link.href.includes('discount=true')) {
-                    link.href += "&discount=true";
-                }
-            });
-        } else {
-            msg.innerText = "❌ Please enter a valid 8-digit PRM code.";
-            msg.style.color = "#e74c3c";
-        }
     }
 </script>
 </body>
